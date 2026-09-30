@@ -1,189 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BNK4-EBook</title>
     <style>
-         .headcontainer {
-            display: flex;
-            justify-content: flex-start; /* 양 끝으로 정렬 */
-            align-items: center;
-        }
-        .container{
-            display: flex;
-            /*flex-direction: row;*/
-            /* flex-direction: column;*/
-	        /*flex-direction: row-reverse;*/ 
-	        /* flex-direction: column-reverse; */
-           /* flex-wrap: nowrap;*/
-            justify-content: flex-end; 
-        }
-        .item{
-            /*flex-basis: 100px;*/
-            /*width: 100px;*/
-            margin:50px 0px 20px 20px;
-            padding:2px;
-            font-size: 13px;
-        }
-        
-       .container1{
-            display: flex;
-            margin-left: 200px;
-       } 
-       .item2{
-         padding:2px;
-         font-size :30px;
-       }
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        background-color: #FDFBF7;
+        margin: 0;
+        padding: 0;
+        /*border: 1px solid red;  */
+    }
 
-       #red{
+    /* 2. 전체를 감싸는 중심 틀 */
+    .container {
+        width: 1500px;
+        margin: 0 auto;
+        /*border: 1px solid red;*/  
+    }
+
+    /* [수정] 자식 요소들을 세로 정렬 기준 중앙(center)으로 맞추고 여백을 일괄 조정 */
+    .header {
+        display: flex;
+        align-items: center; 
+        justify-content: space-between;
+        padding: 40px 0; /* 상하 여백으로 헤더 높이 확보 */
+        /*border: 1px solid red;*/
+    }
+
+    /* [추가] 로고와 검색창을 나란히 묶어주는 정렬 상자 */
+    .logo_search_box {
+        display: flex;
+        align-items: center;
+        gap: 30px; /* 로고와 검색창 사이의 간격 */
+        /*border: 1px solid red;*/
+    }
+
+    /* [수정] 불필요한 과도한 마진을 지우고 깔끔하게 배치 */
+    #logo {
         color: red;
-       }
+        padding: 0;
+        margin: 0; 
+        font-size: 32px; 
+        /*border: 1px solid red;*/  
+    }
 
-       #black{
-        color:black;
-       }
+    /* [수정] 마진을 제거하여 우측 상단 메뉴도 세로 중앙에 오도록 일치시킴 */
+    #top_menu {
+        display: flex;
+        gap: 20px;
+        font-weight: bold;
+        list-style: none;
+        margin: 0; 
+        padding: 0;
+        /*border: 1px solid red;*/
+    }
 
-       #darkcyan{
-        color:darkcyan;
-       }
+    /* 4. 메인 타이틀 영역 */
+    .main_content {
+        text-align: center; 
+        margin-top: 100px;   /* 상단 헤더와의 간격 조절 */
+        /*border: 1px solid red;*/  
+    }
 
-       .container2{
-            display:flex;
-            margin-left:700px;
-       }
-       .item3{
-            padding:20px;
-            font-size :30px;
-       }
-       hr{
-          border: none;               /* 기본 회색 테두리 제거 */
-          border-top: 1px solid red;
-       }
-       .content-wrapper {
-              display: flex;
-              flex-direction: row;
-              margin-left: 200px;
-              gap: 20px; /* 사진과 사이드 메뉴 사이의 간격 */
-              margin-top: 50px;
-         }
-
-        .vertical {
-              display: flex;
-              flex-direction: column;  /* 세로(수직) 방향으로 요소 배치 */
-              height: 300px;
-              gap: 10px; 
-            }
-        .vertical2{
-            display: flex;
-            flex-direction: column;
-            align-items: center;    /* 가로 기준 중앙 정렬 */
-            text-align: center;     /* 글자 텍스트 중앙 정렬 */
-
-        }
-       #item_box1{
-         background-color: red;
-         width: 200px;
-         height: 100px;
-         color: white;
-
-     /* 오른쪽 아래 정렬을 위해 추가된 속성 */
-         display: flex;
-         justify-content: flex-end; /* 가로 우측 정렬 */
-         align-items: flex-end;     /* 세로 하단 정렬 */
-         padding: 15px;             /* 테두리와 글자 사이의 여백 */
-         box-sizing: border-box;   
-       }
-
-       #item_box2{
-        background-color: black;
-        width:200px;
-        height:100px;
-        color: white;
+    #main_title {
+        margin: 0;
+        margin-bottom: 40px; /* 베스트셀러 타이틀과 책 목록 사이의 간격 */
+        font-size: 68px;
+        /*border: 1px solid red;*/  
+    }
+    .book_list {
+        display: flex;
+        gap: 25px;
+        justify-content: center; /* 책 이미지들을 화면 가운데로 배치 */
+    }
+    .book_list img {
+         width: 280px;
+    } 
+     .view_more_btn {
+        display: inline-block;   /* [추가] a 태그에 마진, 크기를 적용하기 위해 필수 */
+        text-decoration: none;   /* [추가] 링크 밑줄 제거 */
+        margin-top: -30px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #333;   /* 버튼 구분을 위한 임시 테두리 */
+        padding: 15px 30px;      /* 위아래 15px, 좌우 30px로 패딩 비율 조정 */
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;         
+        border-radius: 20px;     
+        transition: all 0.2s;    
+    }
+    #top_menu2{
         display:flex;
-        justify-content: flex-end;
-        align-items:flex-end;
-        padding: 15px;
-        box-sizing: border-box;
-       }
-
-       #item_box3{
-        background-color: darkcyan;
-        width:200px;
-        height:100px;
-        color: white;
-        display:flex;
-        justify-content:flex-end;
-        align-items:flex-end;
-        padding:15px;
-        box-sizing: border-box;
-       }
-       
-       .content-wrapper2{
-            display: flex;
-            flex-direction: row;
-            margin-left: 200px;
-            margin-top: 50px;
-            gap: 30px;
-        }
-        .vertical2 img {
-            width: 150px;           /* 원하는 크기로 이미지 축소 */
-            height: auto;           /* 원본 비율 유지 */
-            margin-bottom: 10px;    /* 이미지와 글자 사이 간격 */
-        }
-
-
+        list-style: none;
+        gap:20px;
+    }
     </style>
 </head>
+
 <body>
-    <div class = "container">
-        <div class = "item">로그인</div>
-        <div class = "item">인증센터</div>
-        <div class = "item">은행소개</div>
-        <div class = "item">Global</div>
-    </div>
-
-    <div class = "headcontainer">
-        <div class = "container1">
-        <div id = "red" class = "item2">BNK</div>
-        <div class = "item2">부산은행</div>
-        </div>
-        <div class = "container2">
-        <div class = "item3">개인뱅킹</div>
-        <div class = "item3">기업뱅킹</div>
-        <div class = "item3">금융상품</div>
-        <div class = "item3">검색하기</div>
-        <div class = "item3">전체메뉴</div>
-        </div>
-    </div>
-    <hr>
-
-    <div class = "content-wrapper">
-            <img src = "images/tiger.jpg" width = 1000px height = 300px >
-            <div class ="vertical">
-            <div id = "item_box1">빠른조회서비스</div>
-            <div id = "item_box2">사고분실신고</div>
-            <div id = "item_box3">금융서비스보호</div>
+    <div class="container">
+        <!-- 상단 영역 -->
+         <header class="header">
+            <!-- [변경] 로고와 검색창을 하나의 상자(.logo_search_box)로 감싸서 나란히 정렬합니다 -->
+            <div class="logo_search_box">
+                <h1 id="logo">BNK4-EBook</h1>
+                <ul id = "top_menu2">
+                    <li>특가</li>
+                    <li>기프트카트</li>
+                    <li>혜택 이벤트</li>
+                </ul>
             </div>
+            
+            <ul id="top_menu">
+                <li>로그인</li>
+                <li>회원가입</li>
+                <li>고객센터</li>
+                <li>장바구니</li>
+            </ul>
+        </header>
+        <!-- 본문 타이틀 영역 -->
+        <main class="main_content">
+            <h2 id="main_title">이달의 베스트 셀러!!</h2>
+            <a href="Book_index2.html" class="view_more_btn">자세히보기 &gt;</a>
+            <div class="book_list">
+                <img src="image/book1.jpg" alt="book1">
+                <img src="image/book2.jpg" alt="book2">
+                <img src="image/book3.jpg" alt="book3">
+                <img src="image/book4.jpg" alt="book4">
+                <img src="image/book5.jpg" alt="book5">
+            </div>
+        </main>
     </div>
-
-   <div class = "content-wrapper2">
-        <div class = "vertical2">
-          <div class="content-wrapper2">
-        <div class="vertical2">
-            <!-- width, height 지우기 -->
-            <img src="images/image1.png">
-            <div style="font-weight: bold;">베스트상품</div>
-            <div>온라인판매TOP5</div>
-        </div>
-        <div class="vertical2">
-            <!-- width, height 지우기 -->
-            <img src="images/image2.jpg">
-            <div style="font-weight: bold;">목적별상품</div>
-            <div>상황에 맞는 자금 관리</div>
-        </div>
-   </div>
-
-
 </body>
 </html>
