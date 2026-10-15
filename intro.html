@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax실습</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        body{
+            margin :0 auto;
+            width: 1000px;
+            height:710px;
+            border: 1px solid black;
+        }
+        button{
+            width:200px;
+            height:100px;
+            border-radius: 10px;
+        }
+        .buttongroup{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            gap:30px;
+        }
+        #demo{
+            margin-top:8px;
+            width:1000px;
+            height:500px;
+            border:1px solid black;
+        }
+        .active{
+            background-color:black;
+        }
+    </style>
+</head>
+<body>
+    <h1>인생 영화 소개</h1>
+    <hr>
+    <div class = "buttongroup">
+        <button id ="btn1">1</button>
+        <button id = "btn2">2</button>
+        <button id = "btn3">3</button>
+    </div>
+    <div id = "demo"></div>
+
+    <script>
+        const demo = document.querySelector('#demo');
+        const btn1 = document.querySelector('#btn1');
+        const btn2 = document.querySelector('#btn2');
+        const btn3 = document.querySelector('#btn3');
+        
+
+         function load(n){
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("GET","movies.txt");
+            xhttp.onload = function(){
+                const moives_content = xhttp.responseText.split('---');
+                demo.innerHTML = moives_content[n];
+            };
+            xhttp.send();
+         }
+         const btns = document.querySelectorAll('.buttongroup button');
+         
+         //class List 활용
+         for(let i=1; i<4; i++){
+            document.querySelector('#btn' + i).addEventListener('click',function(){
+                btns.forEach(function(b){
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                load(i-1);
+            });
+         }
+        
+         
+    </script>
+</body>
+</html>
